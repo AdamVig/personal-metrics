@@ -4,7 +4,9 @@
   "description": "Service to capture, store, and display personal metrics.",
   "main": "dist/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:single": "tsc",
+    "build": "npm run build:single -- --watch",
+    "test": ""
   },
   "repository": {
     "type": "git",
@@ -19,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/AdamVig/personal-metrics/issues"
   },
-  "homepage": "https://github.com/AdamVig/personal-metrics#readme"
+  "homepage": "https://github.com/AdamVig/personal-metrics#readme",
+  "devDependencies": {
+    "typescript": "^3.4.5"
+  }
 }
