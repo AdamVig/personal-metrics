@@ -2,5 +2,4 @@
 
 set -euo pipefail
 
-npm run build:single
 docker build --tag 'adamvig/personal-metrics' .
