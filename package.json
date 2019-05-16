@@ -1,0 +1,23 @@
+{
+  "name": "personal-metrics",
+  "version": "1.0.0",
+  "description": "Service to capture, store, and display personal metrics.",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdamVig/personal-metrics.git"
+  },
+  "keywords": [
+    "quantified",
+    "self"
+  ],
+  "author": "Adam <adam@adamvig.com> (https://adamvig.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AdamVig/personal-metrics/issues"
+  },
+  "homepage": "https://github.com/AdamVig/personal-metrics#readme"
+}
