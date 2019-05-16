@@ -4,8 +4,9 @@
   "description": "Service to capture, store, and display personal metrics.",
   "main": "dist/main.js",
   "scripts": {
-    "build:single": "tsc",
     "build": "npm run build:single -- --watch",
+    "build:single": "tsc",
+    "lint": "eslint --ext .ts .",
     "test": ""
   },
   "repository": {
@@ -23,6 +24,9 @@
   },
   "homepage": "https://github.com/AdamVig/personal-metrics#readme",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
+    "@typescript-eslint/parser": "^1.9.0",
+    "eslint": "^5.16.0",
     "typescript": "^3.4.5"
   }
 }
