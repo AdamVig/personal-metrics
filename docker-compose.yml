@@ -1,0 +1,12 @@
+version: '3'
+services:
+  personal-metrics:
+    build: .
+    ports:
+     - "9000:9000"
+  grafana:
+    image: "grafana/grafana"
+    ports:
+     - "9001:9001"
+  postgres:
+    image: "timescale/timescaledb:latest-pg11"
