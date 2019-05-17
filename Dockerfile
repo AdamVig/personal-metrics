@@ -1,5 +1,9 @@
 FROM node:10-alpine as builder
 
+ENV NODE 10
+ENV PLATFORM alpine
+ENV ARCH x64
+
 WORKDIR /app
 
 # Extra tools for native dependencies
@@ -13,15 +17,9 @@ RUN npm ci
 COPY tsconfig.json .
 COPY src src
 RUN npm run build:single
-RUN npx pkg --public --target "node10-alpine-x64" --output dist/personal-metrics dist/main.js
+RUN npx pkg --public --target node${NODE}-${PLATFORM}-${ARCH} --output dist/personal-metrics dist/main.js
 
-FROM alpine
-
-WORKDIR /app
-
-RUN apk add --no-cache g++
-
+FROM node:10-alpine
+EXPOSE 9000
 COPY --from=builder /app/dist/personal-metrics .
-
-EXPOSE 3000
 CMD ["./personal-metrics"]
