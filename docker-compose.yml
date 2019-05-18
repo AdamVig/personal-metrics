@@ -2,6 +2,7 @@ version: '3'
 services:
   personal-metrics:
     build: .
+    image: ${USER}/personal-metrics
     restart: always
     ports:
       - "9000:9000"
