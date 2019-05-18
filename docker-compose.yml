@@ -4,17 +4,17 @@ services:
     build: .
     restart: always
     ports:
-      - "9000:9000"
+      - 9000:9000
   grafana:
     image: "grafana/grafana"
     restart: always
     ports:
-      - "9001:9001"
+      - 3000:9001
   postgres:
     image: "timescale/timescaledb:latest-pg11"
     restart: always
     ports:
-      - "9002:9002"
+      - 5432:9002
     volumes:
       - ${XDG_DATA_HOME:?XDG_DATA_HOME must be set in env}/personal-metrics/pgdata:/var/lib/postgresql/data/pgdata
     environment:
