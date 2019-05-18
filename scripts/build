@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-docker build --tag 'adamvig/personal-metrics' .
+docker build --tag "$USER/personal-metrics" .
