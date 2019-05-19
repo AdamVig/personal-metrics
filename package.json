@@ -7,7 +7,9 @@
     "build": "npm run build:single -- --watch",
     "build:single": "tsc",
     "lint": "eslint --ext .ts .",
-    "test": ""
+    "test": "",
+    "prestart": "npm run --silent build:single",
+    "start": "node dist/main.js"
   },
   "repository": {
     "type": "git",
@@ -29,5 +31,12 @@
     "eslint": "^5.16.0",
     "pkg": "^4.4.0",
     "typescript": "^3.4.5"
+  },
+  "dependencies": {
+    "@nestjs/common": "^6.2.2",
+    "@nestjs/core": "^6.2.2",
+    "@nestjs/platform-express": "^6.2.2",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.2"
   }
 }
