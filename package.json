@@ -8,8 +8,8 @@
     "build:single": "tsc",
     "lint": "eslint --ext .ts .",
     "test": "",
-    "prestart": "npm run --silent build:single",
-    "start": "node dist/main.js"
+    "prestart": "npm run build:single",
+    "start": "concurrently 'npm:build' 'nodemon --watch dist dist/main.js'"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,9 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^1.9.0",
     "@typescript-eslint/parser": "^1.9.0",
+    "concurrently": "^4.1.0",
     "eslint": "^5.16.0",
+    "nodemon": "^1.19.0",
     "pkg": "^4.4.0",
     "typescript": "^3.4.5"
   },
