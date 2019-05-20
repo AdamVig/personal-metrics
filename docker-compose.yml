@@ -8,6 +8,8 @@ services:
       - "9000:9000"
     depends_on:
       - postgres
+    environment:
+      - NODE_ENV=production
   grafana:
     image: "grafana/grafana"
     restart: always
