@@ -9,7 +9,7 @@
     "lint": "eslint --ext .ts .",
     "test": "",
     "prestart": "npm run build:single",
-    "start": "concurrently 'npm:build' 'nodemon --watch dist dist/main.js'"
+    "start": "concurrently 'npm:build' 'nodemon'"
   },
   "repository": {
     "type": "git",
