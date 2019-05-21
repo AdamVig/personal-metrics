@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+docker-compose build
+docker-compose up --no-start
+docker-compose start postgres
+docker-compose start grafana

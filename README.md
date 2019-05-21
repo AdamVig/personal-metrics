@@ -12,6 +12,7 @@ Service to capture, store, and display personal metrics.
 - `./scripts/stop` to stop services and backend
 - `npm start` to run the backend only
 - `./scripts/build` to build the backend Docker container only
+- `./scripts/dev` to run services for development (must run `npm start` separately)
 
 ## Architecture
 [Docker Compose](https://docs.docker.com/compose) is used to orchestrate the following services:
