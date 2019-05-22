@@ -1,7 +1,11 @@
-/** Environment variables. */
+/**
+ * Environment variables.
+ * @description Must match `.env.example`.
+ */
 interface Environment {
-  PGHOST: string;
-  PGUSER: string;
-  PGPASSWORD: string;
-  PGPORT: string;
+  APP_PORT: string;
+  GRAFANA_PORT: string;
+  DB_PORT: string;
+  DB_USER: string;
+  DB_PASSWORD: string;
 }

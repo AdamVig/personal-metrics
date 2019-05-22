@@ -1,11 +1,14 @@
-version: '3'
+version: '3.2'
 services:
-  personal-metrics:
+  app:
     build: .
     image: ${USER}/personal-metrics
     restart: always
     ports:
-      - "9000:9000"
+      - target: $APP_PORT
+        published: $APP_PORT
+        protocol: tcp
+        mode: host
     depends_on:
       - postgres
     environment:
@@ -14,7 +17,10 @@ services:
     image: "grafana/grafana"
     restart: always
     ports:
-      - "9001:3000"
+      - target: 3000
+        published: $GRAFANA_PORT
+        protocol: tcp
+        mode: host
     volumes:
       - ${XDG_DATA_HOME:-~/.local/share}/personal-metrics/grafana:/var/lib/grafana
     depends_on:
@@ -23,9 +29,13 @@ services:
     image: "timescale/timescaledb:latest-pg11"
     restart: always
     ports:
-      - "9002:5432"
+      - target: 5432
+        published: $DB_PORT
+        protocol: tcp
+        mode: host
     volumes:
       - ${XDG_DATA_HOME:-~/.local/share}/personal-metrics/pgdata:/var/lib/postgresql/data/pgdata
     environment:
-      - POSTGRES_PASSWORD=personal-metrics
+      - POSTGRES_USER=$DB_USER
+      - POSTGRES_PASSWORD=$DB_PASSWORD
       - PGDATA=/var/lib/postgresql/data/pgdata

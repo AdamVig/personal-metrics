@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/AdamVig/personal-metrics#readme",
   "devDependencies": {
+    "@types/dotenv": "^6.1.1",
     "@typescript-eslint/eslint-plugin": "^1.9.0",
     "@typescript-eslint/parser": "^1.9.0",
     "concurrently": "^4.1.0",
@@ -38,6 +39,7 @@
     "@nestjs/common": "^6.2.2",
     "@nestjs/core": "^6.2.2",
     "@nestjs/platform-express": "^6.2.2",
+    "dotenv": "^8.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.2"
   }
