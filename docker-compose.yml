@@ -16,7 +16,7 @@ services:
     ports:
       - "9001:3000"
     volumes:
-      - ${XDG_DATA_HOME:?XDG_DATA_HOME must be set in env}/personal-metrics/grafana:/var/lib/grafana
+      - ${XDG_DATA_HOME:-~/.local/share}/personal-metrics/grafana:/var/lib/grafana
     depends_on:
       - postgres
   postgres:
@@ -25,7 +25,7 @@ services:
     ports:
       - "9002:5432"
     volumes:
-      - ${XDG_DATA_HOME:?XDG_DATA_HOME must be set in env}/personal-metrics/pgdata:/var/lib/postgresql/data/pgdata
+      - ${XDG_DATA_HOME:-~/.local/share}/personal-metrics/pgdata:/var/lib/postgresql/data/pgdata
     environment:
       - POSTGRES_PASSWORD=personal-metrics
       - PGDATA=/var/lib/postgresql/data/pgdata
