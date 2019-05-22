@@ -27,11 +27,13 @@
   "homepage": "https://github.com/AdamVig/personal-metrics#readme",
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
+    "@types/pino": "5.8.7",
     "@typescript-eslint/eslint-plugin": "^1.9.0",
     "@typescript-eslint/parser": "^1.9.0",
     "concurrently": "^4.1.0",
     "eslint": "^5.16.0",
     "nodemon": "^1.19.0",
+    "pino-pretty": "3.0.0",
     "pkg": "^4.4.0",
     "typescript": "^3.4.5"
   },
@@ -40,6 +42,7 @@
     "@nestjs/core": "^6.2.2",
     "@nestjs/platform-express": "^6.2.2",
     "dotenv": "^8.0.0",
+    "pino": "5.12.5",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.2"
   }
