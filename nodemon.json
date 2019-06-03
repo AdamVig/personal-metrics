@@ -1,5 +1,8 @@
 {
-  "watch": "dist",
+  "watch": [
+    "dist",
+    ".env"
+  ],
   "exec": "node dist/main.js",
   "restartable": false,
   "quiet": true,
