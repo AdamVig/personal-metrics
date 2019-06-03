@@ -5,7 +5,7 @@ import { LogFactory, Logger } from './logger/log-factory';
 export class AppController {
   private readonly log: Logger
 
-  constructor(log: LogFactory) {
+  public constructor(log: LogFactory) {
     this.log = log.child('AppController')
     this.log.info('running')
   }
