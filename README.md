@@ -15,7 +15,7 @@ Copy `.env.example` to `.env` and set a value for each variable. These variables
 - `./scripts/stop` to stop services and application
 
 ## Development
-## Scripts
+### Scripts
 - `npm start` to run the application only
 - `./scripts/build` to build the application Docker container only
 - `./scripts/dev` to run services for development (must run `npm start` separately)
