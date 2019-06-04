@@ -19,6 +19,7 @@ Copy `.env.example` to `.env` and set a value for each variable. These variables
 - `npm start` to run the application only
 - `./scripts/build` to build the application Docker container only
 - `./scripts/dev` to run services for development (must run `npm start` separately)
+- `npm run docs` to generate documentation (available at `/docs`)
 
 ### Architecture
 [Docker Compose](https://docs.docker.com/compose) is used to orchestrate the following services:

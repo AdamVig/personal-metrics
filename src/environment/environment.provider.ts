@@ -15,6 +15,7 @@ export interface Environment {
   DB_PASSWORD: string;
 }
 
+/** Provider for environment variables used by the application. */
 @Injectable()
 export class EnvironmentProvider {
   private readonly log: Logger

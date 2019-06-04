@@ -1,5 +1,8 @@
-import { Controller, Get } from '@nestjs/common'
-import { LogFactory, Logger } from './logger/log-factory';
+import { Controller, Get, Res } from '@nestjs/common'
+import {Response} from 'express'
+import { join } from 'path'
+
+import { LogFactory, Logger } from './logger/log-factory'
 
 @Controller()
 export class AppController {
@@ -15,5 +18,10 @@ export class AppController {
     return {
       uptime: process.uptime(),
     }
+  }
+
+  @Get('docs')
+  public docs(@Res() res: Response): void {
+    res.sendFile(join(__dirname, '..', 'docs/index.html'))
   }
 }

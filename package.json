@@ -6,10 +6,11 @@
   "scripts": {
     "build": "npm run build:single -- --watch",
     "build:single": "tsc",
+    "docs": "typedoc --out dist/docs --theme minimal --logger none --hideGenerator",
     "lint": "eslint --ext .ts .",
-    "test": "",
-    "prestart": "npm run build:single",
-    "start": "concurrently 'npm:build' 'nodemon'"
+    "prestart": "npm run build:single && npm run docs",
+    "start": "concurrently 'npm:build' 'nodemon'",
+    "test": ""
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
   "homepage": "https://github.com/AdamVig/personal-metrics#readme",
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
+    "@types/express": "^4.16.1",
     "@types/pino": "^5.8.8",
     "@typescript-eslint/eslint-plugin": "^1.9.0",
     "@typescript-eslint/parser": "^1.9.0",
@@ -35,6 +37,7 @@
     "nodemon": "^1.19.1",
     "pino-pretty": "^3.1.0",
     "pkg": "^4.4.0",
+    "typedoc": "^0.14.2",
     "typescript": "^3.5.1"
   },
   "dependencies": {
