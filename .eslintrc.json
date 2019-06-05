@@ -1,21 +1,22 @@
 {
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-        "@typescript-eslint"
-    ],
-    "extends": [
-        "plugin:@typescript-eslint/recommended",
-        "prettier",
-        "prettier/@typescript-eslint"
-    ],
-    "rules": {
-      "indent": ["error", 2],
-      "@typescript-eslint/indent": ["error", 2],
-      "@typescript-eslint/no-parameter-properties": [
-        "error", {"allows": ["private readonly", "protected readonly", "public readonly"]}
-      ]
-    },
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    }
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/@typescript-eslint"
+  ],
+  "rules": {
+    "indent": ["error", 2],
+    "@typescript-eslint/indent": ["error", 2],
+    "@typescript-eslint/no-parameter-properties": [
+      "error",
+      {
+        "allows": ["private readonly", "protected readonly", "public readonly"]
+      }
+    ]
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
 }

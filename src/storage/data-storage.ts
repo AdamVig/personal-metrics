@@ -4,5 +4,5 @@ import { EnvironmentProvider } from '../environment/environment.provider'
 export abstract class DataStorage {
   public constructor(protected readonly env: EnvironmentProvider) {}
 
-  abstract store(datum: number|string|boolean): Promise<void>;
+  abstract store(datum: number | string | boolean): Promise<void>
 }

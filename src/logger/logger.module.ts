@@ -1,7 +1,7 @@
-import { Module } from '@nestjs/common';
+import { Module } from '@nestjs/common'
 
-import { LogFactory } from './log-factory';
-import { NestLogger } from './nest-logger';
+import { LogFactory } from './log-factory'
+import { NestLogger } from './nest-logger'
 
 @Module({
   providers: [LogFactory, NestLogger],

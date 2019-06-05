@@ -1,13 +1,13 @@
-import { Injectable, LoggerService } from '@nestjs/common';
+import { Injectable, LoggerService } from '@nestjs/common'
 
-import { LogFactory, Logger } from './log-factory';
+import { LogFactory, Logger } from './log-factory'
 
 @Injectable()
 export class NestLogger implements LoggerService {
-  private logger: Logger;
+  private logger: Logger
 
   public constructor(logFactory: LogFactory) {
-    this.logger = logFactory.child('Nest');
+    this.logger = logFactory.child('Nest')
   }
 
   public error(message: object, trace?: string, context?: string): void {
@@ -53,5 +53,4 @@ export class NestLogger implements LoggerService {
   public static verbose(message: object, context?: string): void {
     NestLogger.getLogger().verbose(message, context)
   }
-
 }

@@ -8,11 +8,11 @@ import { LogFactory, Logger } from '../logger/log-factory'
  * @description Must match `.env.example`.
  */
 export interface Environment {
-  APP_PORT: string;
-  GRAFANA_PORT: string;
-  DB_PORT: string;
-  DB_USER: string;
-  DB_PASSWORD: string;
+  APP_PORT: string
+  GRAFANA_PORT: string
+  DB_PORT: string
+  DB_USER: string
+  DB_PASSWORD: string
 }
 
 /** Provider for environment variables used by the application. */
@@ -26,7 +26,7 @@ export class EnvironmentProvider {
     'DB_USER',
     'DB_PASSWORD',
   ])
-  private readonly variables = new Map<keyof Environment, string>();
+  private readonly variables = new Map<keyof Environment, string>()
 
   public constructor(log: LogFactory) {
     this.log = log.child('Environment')
@@ -76,10 +76,10 @@ export class EnvironmentProvider {
    * @see {@link http://2ality.com/2015/08/es6-map-json.html}
    */
   private static strMapToObj(strMap: Map<string, string>): object {
-    let obj = Object.create(null);
-    for (let [k,v] of strMap) {
-      obj[k] = v;
+    let obj = Object.create(null)
+    for (let [k, v] of strMap) {
+      obj[k] = v
     }
-    return obj;
+    return obj
   }
 }

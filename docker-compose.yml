@@ -14,7 +14,7 @@ services:
     environment:
       - NODE_ENV=production
   grafana:
-    image: "grafana/grafana"
+    image: 'grafana/grafana'
     restart: always
     ports:
       - target: 3000
@@ -26,7 +26,7 @@ services:
     depends_on:
       - postgres
   postgres:
-    image: "timescale/timescaledb:latest-pg11"
+    image: 'timescale/timescaledb:latest-pg11'
     restart: always
     ports:
       - target: 5432

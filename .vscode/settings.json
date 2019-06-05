@@ -1,8 +1,7 @@
 {
-    "eslint.autoFixOnSave": true,
-    "eslint.validate": [
-      {"language": "typescript", "autoFix": true}
-    ],
-    "editor.formatOnSave": true,
-    "typescript.tsdk": "node_modules/typescript/lib"
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [{ "language": "typescript", "autoFix": true }],
+  "editor.formatOnSave": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "eslint.enable": true
 }
