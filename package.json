@@ -42,7 +42,7 @@
     "pkg": "^4.4.0",
     "prettier": "1.18.2",
     "typedoc": "^0.14.2",
-    "typescript": "^3.5.1"
+    "typescript": "^3.5.2"
   },
   "dependencies": {
     "@nestjs/common": "^6.3.1",
