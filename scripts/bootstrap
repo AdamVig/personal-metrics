@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+sudo --validate
+
 if [[ "$OSTYPE" == *linux* ]]; then
   echo 'creating Grafana directory...'
   grafana_dir="${XDG_DATA_HOME:-~/.local/share}"/personal-metrics/grafana
@@ -9,5 +11,5 @@ if [[ "$OSTYPE" == *linux* ]]; then
 
   echo 'setting permissions on Grafana volume...'
   # https://grafana.com/docs/installation/docker/#user-id-changes
-  chown -R 472 "$grafana_dir"
+  sudo chown -R 472 "$grafana_dir"
 fi
