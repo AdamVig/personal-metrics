@@ -6,5 +6,7 @@ src_dir=/opt/personal-metrics-src
 
 GIT_WORK_TREE="$src_dir" git checkout -f
 
+pushd "$src_dir" > /dev/null
 "$src_dir"/scripts/stop
 "$src_dir"/scripts/start
+popd > /dev/null
