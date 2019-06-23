@@ -23,6 +23,8 @@ services:
         mode: host
     volumes:
       - ${XDG_DATA_HOME:-~/.local/share}/personal-metrics/grafana:/var/lib/grafana
+    environment:
+      - GF_SERVER_ROOT_URL=${GRAFANA_ROOT_URL:-http://localhost:9001}
     depends_on:
       - postgres
   postgres:
