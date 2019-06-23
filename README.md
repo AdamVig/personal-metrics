@@ -13,6 +13,12 @@ Service to capture, store, and display personal metrics.
 
 Copy `.env.example` to `.env` and set a value for each variable. These variables will be used in `docker-compose.yml` and in the Node.JS application.
 
+Optionally, copy `personal-metrics.conf` to `/etc/nginx/sites-available` and enable it with
+
+```shell
+ln -s /etc/nginx/sites-available/personal-metrics.conf /etc/nginx/sites-enabled/personal-metrics.conf
+```
+
 ### Scripts
 
 - `./scripts/start` to run services and application
