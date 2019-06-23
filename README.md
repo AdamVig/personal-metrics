@@ -17,6 +17,11 @@ Copy `.env.example` to `.env` and set a value for each variable. These variables
 
 - `./scripts/start` to run services and application
 - `./scripts/stop` to stop services and application
+- `./scripts/bootstrap` to run one-time setup
+- `./scripts/post-receive` to check out code and restart services/application on a remote host
+  - To use this script, the remote host must have a bare Git repository: `git clone --bare https://github.com/AdamVig/personal-metrics.git`
+  - The script should be places in that bare Git repository at `./hooks/post-receive` and made executable with
+    `chmod +x ./hooks/post-receive`.
 
 ## Development
 

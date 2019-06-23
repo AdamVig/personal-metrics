@@ -1,1 +1,10 @@
-GIT_WORK_TREE=/opt/personal-metrics-src git checkout -f
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+src_dir=/opt/personal-metrics-src
+
+GIT_WORK_TREE="$src_dir" git checkout -f
+
+"$src_dir"/scripts/stop
+"$src_dir"/scripts/start
