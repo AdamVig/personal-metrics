@@ -35,7 +35,7 @@
     "@typescript-eslint/eslint-plugin": "^1.11.0",
     "@typescript-eslint/parser": "^1.11.0",
     "concurrently": "^4.1.0",
-    "eslint": "^6.0.0",
+    "eslint": "^6.0.1",
     "eslint-config-prettier": "5.1.0",
     "nodemon": "^1.19.1",
     "pino-pretty": "^3.2.0",
