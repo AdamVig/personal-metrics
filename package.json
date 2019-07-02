@@ -47,7 +47,7 @@
   "dependencies": {
     "@nestjs/common": "^6.3.2",
     "@nestjs/core": "^6.4.0",
-    "@nestjs/platform-express": "^6.3.2",
+    "@nestjs/platform-express": "^6.4.0",
     "dotenv": "^8.0.0",
     "pino": "^5.12.6",
     "reflect-metadata": "^0.1.13",
