@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^6.4.1",
-    "@nestjs/core": "^6.4.0",
+    "@nestjs/core": "^6.4.1",
     "@nestjs/platform-express": "^6.4.1",
     "dotenv": "^8.0.0",
     "pino": "^5.12.6",
