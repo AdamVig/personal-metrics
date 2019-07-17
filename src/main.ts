@@ -8,9 +8,8 @@ import { NestLogger } from './logger/nest-logger'
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    logger: false,
+    logger: new NestLogger(new LogFactory()),
   })
-  app.useLogger(app.get(NestLogger))
   app.useStaticAssets(__dirname)
   app.set('x-powered-by', false)
 
