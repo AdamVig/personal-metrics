@@ -10,7 +10,7 @@
     "format": "prettier --write '{**/*.md,**/*.json,**/*.yml,src/**/*.ts}'",
     "format:check": "prettier --check '{**/*.md,**/*.json,**/*.yml,src/**/*.ts}'",
     "lint": "eslint --ext .ts .",
-    "prestart": "npm run build:single && npm run docs",
+    "prestart": "concurrently 'npm:build:single' 'npm:docs'",
     "start": "concurrently 'npm:build' 'nodemon'",
     "test": ""
   },
