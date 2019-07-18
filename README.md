@@ -39,6 +39,12 @@ ln -s /etc/nginx/sites-available/personal-metrics.conf /etc/nginx/sites-enabled/
 - `./scripts/db` to connect to the database using variables from `.env`
 - `npm run docs` to generate documentation (available at `/docs`)
 
+### TypeORM
+
+- [Documentation](https://typeorm.io/)
+- Use the CLI via `npm run typeorm --`. For example:
+  - `npm run typeorm -- migration:create --dir src/migrations --name foo`
+
 ### Architecture
 
 [Docker Compose](https://docs.docker.com/compose) is used to orchestrate the following services:

@@ -12,7 +12,8 @@
     "lint": "eslint --ext .ts .",
     "prestart": "concurrently 'npm:build:single' 'npm:docs'",
     "start": "concurrently 'npm:build' 'nodemon'",
-    "test": ""
+    "test": "",
+    "typeorm": "ts-node ./node_modules/.bin/typeorm"
   },
   "repository": {
     "type": "git",
@@ -41,6 +42,7 @@
     "pino-pretty": "^3.2.0",
     "pkg": "^4.4.0",
     "prettier": "1.18.2",
+    "ts-node": "^8.3.0",
     "typedoc": "^0.14.2",
     "typescript": "^3.5.3"
   },
