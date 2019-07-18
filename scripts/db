@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Connect to the database using variables from .env.
+
+set -euo pipefail
+
+if ! command -v psql > /dev/null; then
+  echo 'error: psql must be installed'
+  exit 1
+fi
+
+# https://stackoverflow.com/a/20909045/1850656
+export $(grep -v '^#' .env | xargs)
+
+if [ -z "${DB_PORT:-}" ]; then
+  echo 'error: DB_PORT must be set in .env'
+  exit 1
+fi
+
+if [ -z "${DB_USER:-}" ]; then
+  echo 'error: DB_USER must be set in .env'
+  exit 1
+fi
+
+if [ -z "${DB_PASSWORD:-}" ]; then
+  echo 'error: DB_PASSWORD must be set in .env'
+  exit 1
+fi
+
+PGHOST=localhost PGPORT="$DB_PORT" PGUSER="$DB_USER" PGPASSWORD="$DB_PASSWORD" psql
