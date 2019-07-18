@@ -32,7 +32,7 @@ export class EnvironmentProvider {
     this.log = log.child('Environment')
     dotenv.config()
 
-    this.log.debug(process.env, 'environment variables')
+    this.log.trace(process.env, 'environment variables')
     this.capture()
     this.log.debug(EnvironmentProvider.strMapToObj(this.variables), 'captured variables')
   }
