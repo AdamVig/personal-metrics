@@ -4,7 +4,8 @@ export type Logger = pino.Logger
 
 export class LogFactory {
   private readonly log = pino({
-    level: process.env.LOG_LEVEL || 'info',
+    level:
+      process.env.LOG_LEVEL || (process.env.NODE_ENV === 'production' ? 'info' : 'debug'),
     base: {},
     prettyPrint: process.env.NODE_ENV !== 'production',
   })
