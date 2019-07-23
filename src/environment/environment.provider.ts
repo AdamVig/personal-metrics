@@ -13,6 +13,8 @@ export interface Environment {
   DB_PORT: string
   DB_USER: string
   DB_PASSWORD: string
+  DB_USER_READONLY: string
+  DB_PASSWORD_READONLY: string
 }
 
 /** Provider for environment variables used by the application. */
@@ -25,6 +27,8 @@ export class EnvironmentProvider {
     'DB_PORT',
     'DB_USER',
     'DB_PASSWORD',
+    'DB_USER_READONLY',
+    'DB_PASSWORD_READONLY',
   ])
   private readonly variables = new Map<keyof Environment, string>()
 
