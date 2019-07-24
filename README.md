@@ -11,7 +11,8 @@ Service to capture, store, and display personal metrics.
 
 ### Configuration
 
-Copy `.env.example` to `.env` and set a value for each variable. These variables will be used in `docker-compose.yml` and in the Node.JS application.
+Copy `.env.example` to `.env` and set a value for each variable. These variables will be used in `docker-compose.yml`
+and in the Node.JS application. See "Finding API Tokens" below for help filling in the variable values.
 
 Optionally, copy `personal-metrics.conf` to `/etc/nginx/sites-available` and enable it with
 
@@ -67,3 +68,7 @@ should be as follows:
 - PostgreSQL with the [TimescaleDB](https://docs.timescale.com) extension for data storage
 - [Grafana](https://grafana.com/docs/) for data visualization
 - a Node.JS application built with `./Dockerfile` for data ingestion
+
+## Finding API Tokens
+
+- [Pinboard](https://pinboard.in/settings/password)
