@@ -29,6 +29,21 @@ ln -s /etc/nginx/sites-available/personal-metrics.conf /etc/nginx/sites-enabled/
   - The script should be places in that bare Git repository at `./hooks/post-receive` and made executable with
     `chmod +x ./hooks/post-receive`.
 
+### Adding a Grafana Data Source
+
+Grafana must communicate with the Postgres Docker container via the Docker Compose network. The connection configuration
+should be as follows:
+
+| Field       | Value/Variable         |
+| ----------- | ---------------------- |
+| Host        | postgres:5432          |
+| Database    | `DB_USER`              |
+| User        | `DB_USER_READONLY`     |
+| Password    | `DB_PASSWORD_READONLY` |
+| SSL Mode    | disable                |
+| Version     | 10                     |
+| TimescaleDB | yes                    |
+
 ## Development
 
 ### Scripts
