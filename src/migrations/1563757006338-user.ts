@@ -13,7 +13,7 @@ export class User1563757006338 implements MigrationInterface {
       )}'`,
     )
     await queryRunner.query(
-      `GRANT SELECT ON ALL TABLES IN SCHEMA public TO "${this.env.get(
+      `ALTER DEFAULT PRIVILEGES IN SCHEMA PUBLIC GRANT SELECT ON TABLES TO "${this.env.get(
         'DB_USER_READONLY',
       )}"`,
     )
@@ -22,11 +22,10 @@ export class User1563757006338 implements MigrationInterface {
   public async down(queryRunner: QueryRunner): Promise<void> {
     // https://stackoverflow.com/a/3023840/1850656
     await queryRunner.query(
-      `REASSIGN OWNED BY "${this.env.get('DB_USER_READONLY')}" TO "${this.env.get(
-        'DB_USER',
+      `ALTER DEFAULT PRIVILEGES IN SCHEMA PUBLIC REVOKE SELECT ON TABLES FROM "${this.env.get(
+        'DB_USER_READONLY',
       )}"`,
     )
-    await queryRunner.query(`DROP OWNED BY "${this.env.get('DB_USER_READONLY')}"`)
     await queryRunner.query(`DROP USER "${this.env.get('DB_USER_READONLY')}"`)
   }
 }
