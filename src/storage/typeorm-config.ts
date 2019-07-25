@@ -25,7 +25,7 @@ export class TypeOrmConfig implements TypeOrmOptionsFactory {
       password: this.env.get('DB_PASSWORD'),
       // The Postgres Docker container automatically creates a database for the configured user
       database: this.env.get('DB_USER'),
-      entities: [join(__dirname, '..', '/**/*.entity.ts')],
+      entities: [join(__dirname, '..', '/**/*.entity.*')],
       migrationsRun: true,
       migrations: [join(__dirname, '..', 'migrations/*')],
     }
