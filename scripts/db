@@ -9,6 +9,12 @@ if ! command -v psql > /dev/null; then
   exit 1
 fi
 
+# Use read-only user instead of normal user if the flag -r or --readonly is passed
+read_only=1
+if [ "${1:-}" = "-r" ] || [ "${1:-}" = "--readonly" ]; then
+  read_only=0
+fi
+
 # https://stackoverflow.com/a/20909045/1850656
 export $(grep -v '^#' .env | xargs)
 
@@ -17,14 +23,29 @@ if [ -z "${DB_PORT:-}" ]; then
   exit 1
 fi
 
+# User is used for database name as well as username
 if [ -z "${DB_USER:-}" ]; then
   echo 'error: DB_USER must be set in .env'
   exit 1
 fi
 
-if [ -z "${DB_PASSWORD:-}" ]; then
-  echo 'error: DB_PASSWORD must be set in .env'
-  exit 1
-fi
+if [ $read_only = 0 ]; then
+  if [ -z "${DB_USER_READONLY:-}" ]; then
+    echo 'error: DB_USER_READONLY must be set in .env'
+    exit 1
+  fi
 
-PGHOST=localhost PGPORT="$DB_PORT" PGUSER="$DB_USER" PGPASSWORD="$DB_PASSWORD" psql
+  if [ -z "${DB_PASSWORD_READONLY:-}" ]; then
+    echo 'error: DB_PASSWORD_READONLY must be set in .env'
+    exit 1
+  fi
+
+  PGHOST=localhost PGPORT="$DB_PORT" PGDATABASE="$DB_USER" PGUSER="$DB_USER_READONLY" PGPASSWORD="$DB_PASSWORD_READONLY" psql
+else
+  if [ -z "${DB_PASSWORD:-}" ]; then
+    echo 'error: DB_PASSWORD must be set in .env'
+    exit 1
+  fi
+
+  PGHOST=localhost PGPORT="$DB_PORT" PGUSER="$DB_USER" PGPASSWORD="$DB_PASSWORD" psql
+fi
