@@ -11,7 +11,7 @@ import { Monitor } from '../monitors/monitor'
 @Injectable()
 export class BookmarksMonitor implements Monitor {
   /** Ninety minutes. */
-  public static readonly interval = 324000
+  public readonly interval = 5400
   private readonly log: Logger
 
   public constructor(
@@ -20,7 +20,7 @@ export class BookmarksMonitor implements Monitor {
     @InjectRepository(BookmarkCount)
     private readonly repository: Repository<BookmarkCount>,
   ) {
-    this.log = log.child('BookmarksFetcher')
+    this.log = log.child('BookmarksMonitor')
   }
 
   public async update(): Promise<void> {
@@ -49,5 +49,10 @@ export class BookmarksMonitor implements Monitor {
       }
     }
     return count
+  }
+
+  public getLastUpdateTime(): Date | null {
+    // TODO implement database check
+    return new Date()
   }
 }

@@ -5,10 +5,16 @@ export type Duration = number
 export abstract class Monitor {
   /**
    * Interval between checks. Defaults to one hour.
-   * @default 216000
+   * @default 3600
    */
-  public static readonly interval: Duration = 216000
+  public readonly interval: Duration = 3600
 
-  /** Fetches the latest data from the data source and inserts it into the database. */
+  /** Get the latest data from the data source and inserts it into the database. */
   public abstract update(): Promise<void>
+
+  /**
+   * Get the time of the last update.
+   * @return Time of last update or `null` if no previous updates are found.
+   */
+  public abstract getLastUpdateTime(): Date | null
 }
