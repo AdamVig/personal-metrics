@@ -6,9 +6,12 @@ import { Bookmark } from './bookmark'
 import { BookmarkCount } from './bookmark-count.entity'
 import { LogFactory, Logger } from '../logger/log-factory'
 import { PinboardClient } from './pinboard-client'
+import { Monitor } from '../monitors/monitor'
 
 @Injectable()
-export class BookmarksFetcher {
+export class BookmarksMonitor implements Monitor {
+  /** Ninety minutes. */
+  public static readonly interval = 324000
   private readonly log: Logger
 
   public constructor(
@@ -20,7 +23,7 @@ export class BookmarksFetcher {
     this.log = log.child('BookmarksFetcher')
   }
 
-  public async getBookmarks(): Promise<void> {
+  public async update(): Promise<void> {
     try {
       this.log.info('fetching bookmarks')
       const bookmarks = await this.pinboardClient.getAll()

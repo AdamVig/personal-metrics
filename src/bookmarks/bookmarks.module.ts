@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
 import { BookmarkCount } from './bookmark-count.entity'
-import { BookmarksFetcher } from './bookmarks-fetcher'
+import { BookmarksMonitor } from './bookmarks-monitor'
 import { EnvironmentModule } from '../environment/environment.module'
 import { HttpModule } from '../http/http.module'
 import { LoggerModule } from '../logger/logger.module'
@@ -15,7 +15,7 @@ import { PinboardClient } from './pinboard-client'
     LoggerModule,
     TypeOrmModule.forFeature([BookmarkCount]),
   ],
-  providers: [BookmarksFetcher, PinboardClient],
-  exports: [BookmarksFetcher],
+  providers: [BookmarksMonitor, PinboardClient],
+  exports: [BookmarksMonitor],
 })
 export class BookmarksModule {}
