@@ -4,62 +4,64 @@ import {
   formatDistanceToNow,
   lightFormat,
   differenceInMilliseconds,
+  differenceInSeconds,
 } from 'date-fns'
 
 import { BookmarksMonitor } from '../bookmarks/bookmarks-monitor'
 import { LogFactory, Logger } from '../logger/log-factory'
 import { Monitor } from './monitor'
+import { TaskQueue } from './task-queue'
 
 /**
- * Oversees scheduling and execution of `Monitor`s.
+ * Oversees scheduling of `Monitor`s.
  */
 @Injectable()
 export class Scheduler {
   private readonly log: Logger
-  // TODO store monitor classes too
-  private readonly monitors: Readonly<Monitor[]>
+  private readonly monitors: Readonly<Map<string, Monitor>> = new Map()
 
-  public constructor(log: LogFactory, bookmarksMonitor: BookmarksMonitor) {
+  public constructor(
+    log: LogFactory,
+    private readonly taskQueue: TaskQueue,
+    bookmarksMonitor: BookmarksMonitor,
+  ) {
     this.log = log.child('Scheduler')
-    this.monitors = [bookmarksMonitor]
-    this.initialize()
+    this.monitors.set('BookmarksMonitor', bookmarksMonitor)
+    this.scheduleTasks()
   }
 
-  private async initialize(): Promise<void> {
-    this.log.debug('initializing scheduler')
-    for (const monitor of this.monitors) {
-      // TODO add logic to get last check from monitor
-      const nextUpdate = await this.getNextUpdateTime(monitor)
-      this.scheduleUpdate(nextUpdate, monitor)
-    }
-  }
-
-  private async getNextUpdateTime(monitor: Monitor): Promise<Date> {
-    const lastUpdate = (await monitor.getLastUpdateTime()) || new Date()
-    return addSeconds(lastUpdate, monitor.interval)
-  }
-
-  private scheduleUpdate(nextUpdate: Date, monitor: Monitor): void {
-    const nextUpdateMs = differenceInMilliseconds(nextUpdate, new Date())
-    this.log.debug(
-      'scheduling update in %s (%s, %d seconds from now)',
-      formatDistanceToNow(nextUpdate),
-      lightFormat(nextUpdate, 'yyyy-MM-dd hh:mm:ssa'),
-      nextUpdateMs / 1000,
+  private async scheduleTasks(): Promise<void> {
+    await Promise.all(
+      Array.from(this.monitors.entries()).map(
+        ([name, monitor]): Promise<void> => this.scheduleTask(name, monitor),
+      ),
     )
+  }
+
+  private async scheduleTask(name: string, monitor: Monitor): Promise<void> {
+    const nextRun = await this.getNextRun(monitor)
+    this.logNextRun(name, nextRun)
+    const nextRunMs = differenceInMilliseconds(nextRun, new Date())
+    // TODO this only runs once, add repeated scheduling
     setTimeout(
-      (): void => void this.runUpdate((): Promise<void> => monitor.update()),
-      nextUpdateMs,
+      (): void =>
+        void this.taskQueue.runTask(`${name}-${nextRunMs}`, monitor.update.bind(monitor)),
+      nextRunMs,
     )
   }
 
-  private async runUpdate(updater: Monitor['update']): Promise<void> {
-    try {
-      this.log.debug('running update')
-      await updater()
-      updater
-    } catch (error) {
-      this.log.error(error, 'update failed')
-    }
+  private async getNextRun(monitor: Monitor): Promise<Date> {
+    const lastRun = (await monitor.getLastUpdateTime()) || new Date()
+    return addSeconds(lastRun, monitor.interval)
+  }
+
+  private logNextRun(name: string, nextRun: Date): void {
+    this.log.debug(
+      'scheduling update for "%s" in %s (%s, %d seconds from now)',
+      name,
+      formatDistanceToNow(nextRun),
+      lightFormat(nextRun, 'yyyy-MM-dd hh:mm:ssa'),
+      differenceInSeconds(nextRun, new Date()),
+    )
   }
 }
