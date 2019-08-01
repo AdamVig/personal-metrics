@@ -40,7 +40,10 @@ export class EnvironmentProvider {
 
     this.log.trace(process.env, 'environment variables')
     this.capture()
-    this.log.debug(EnvironmentProvider.strMapToObj(this.variables), 'captured variables')
+    this.log.debug(
+      this.redact(EnvironmentProvider.strMapToObj(this.variables) as Environment),
+      'captured variables',
+    )
   }
 
   /**
@@ -75,6 +78,21 @@ export class EnvironmentProvider {
       return this.variables.get(name) as string
     }
     throw new Error(`variable "${name}" is not set`)
+  }
+
+  /** Redact sensitive variables in environment for logging purposes. */
+  private redact(variables: Environment): Environment {
+    const redactedVariables = { ...variables }
+    const toRedact = Array.from(this.capturedVariables).filter(
+      (varName): boolean => varName.includes('TOKEN') || varName.includes('PASSWORD'),
+    )
+    for (const varName of toRedact) {
+      if (varName in variables) {
+        redactedVariables[varName] = '[REDACTED]'
+      }
+    }
+
+    return redactedVariables
   }
 
   /**
