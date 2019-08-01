@@ -21,6 +21,11 @@ async function bootstrap(): Promise<void> {
     log.fatal(error)
     process.exit(1)
   }
+
+  process.on('unhandledRejection', (reason: object | null | undefined): void =>
+    log.error({ err: reason }, 'unhandled promise rejection'),
+  )
+
   await app.listen(env.get('APP_PORT'))
 }
 
