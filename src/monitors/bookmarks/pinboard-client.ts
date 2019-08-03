@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
 
 import { Bookmark } from './bookmark'
-import { EnvironmentProvider } from '../environment/environment.provider'
-import { Http } from '../http/http'
-import { LogFactory, Logger } from '../logger/log-factory'
+import { EnvironmentProvider } from '../../environment/environment.provider'
+import { Http } from '../../http/http'
+import { LogFactory, Logger } from '../../logger/log-factory'
 import { AxiosRequestConfig } from 'axios'
 
 @Injectable()

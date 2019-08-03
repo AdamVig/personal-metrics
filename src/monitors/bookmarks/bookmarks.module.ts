@@ -3,9 +3,9 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 
 import { BookmarkCount } from './bookmark-count.entity'
 import { BookmarksMonitor } from './bookmarks-monitor'
-import { EnvironmentModule } from '../environment/environment.module'
-import { HttpModule } from '../http/http.module'
-import { LoggerModule } from '../logger/logger.module'
+import { EnvironmentModule } from '../../environment/environment.module'
+import { HttpModule } from '../../http/http.module'
+import { LoggerModule } from '../../logger/logger.module'
 import { PinboardClient } from './pinboard-client'
 
 @Module({

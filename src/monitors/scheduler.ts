@@ -7,7 +7,7 @@ import {
   differenceInSeconds,
 } from 'date-fns'
 
-import { BookmarksMonitor } from '../bookmarks/bookmarks-monitor'
+import { BookmarksMonitor } from './bookmarks/bookmarks-monitor'
 import { LogFactory, Logger } from '../logger/log-factory'
 import { Monitor } from './monitor'
 import { TaskQueue } from './task-queue'

@@ -4,9 +4,9 @@ import { Repository } from 'typeorm'
 
 import { Bookmark } from './bookmark'
 import { BookmarkCount } from './bookmark-count.entity'
-import { LogFactory, Logger } from '../logger/log-factory'
+import { LogFactory, Logger } from '../../logger/log-factory'
 import { PinboardClient } from './pinboard-client'
-import { Monitor } from '../monitors/monitor'
+import { Monitor } from '../../monitors/monitor'
 
 @Injectable()
 export class BookmarksMonitor implements Monitor {
