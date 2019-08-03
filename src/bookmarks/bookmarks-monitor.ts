@@ -31,7 +31,7 @@ export class BookmarksMonitor implements Monitor {
       await this.repository.save(bookmarkCount)
       this.log.info('successfully fetched bookmarks')
     } catch (error) {
-      this.log.error(error)
+      this.log.error({ err: error })
     }
   }
 

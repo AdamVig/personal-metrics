@@ -33,7 +33,7 @@ export class PinboardClient {
       )
       return bookmarks
     } catch (error) {
-      this.log.error(error)
+      this.log.error({ err: error })
       throw new Error('failed to get all Pinboard bookmarks')
     }
   }
