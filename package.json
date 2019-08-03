@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npm run build:single -- --watch",
     "build:single": "tsc",
-    "docs": "typedoc --out dist/docs --theme minimal --hideGenerator",
+    "docs": "typedoc --out dist/docs --theme minimal --mode file --hideGenerator",
     "format": "prettier --write '{**/*.md,**/*.json,**/*.yml,src/**/*.ts}'",
     "format:check": "prettier --check '{**/*.md,**/*.json,**/*.yml,src/**/*.ts}'",
     "lint": "eslint --ext .ts .",
