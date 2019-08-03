@@ -7,7 +7,10 @@ import { LogFactory, Logger } from '../logger/log-factory'
 export class Http {
   private readonly log: Logger
   private readonly axios: AxiosInstance
-  private static readonly axiosConfig: AxiosRequestConfig = {}
+  private static readonly axiosConfig: AxiosRequestConfig = {
+    // Fifteen seconds
+    timeout: 15000,
+  }
 
   public constructor(log: LogFactory) {
     this.log = log.child('Http')
