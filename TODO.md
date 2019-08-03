@@ -1,4 +1,3 @@
-- add source-map-support
 - try https://www.npmjs.com/package/queue instead of p-queue
 - handle task queue timeout errors?
 - add entity for last updated time for each monitor
