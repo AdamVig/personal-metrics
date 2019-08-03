@@ -11,6 +11,8 @@ export abstract class Monitor {
 
   /**
    * Get the latest data from the data source and insert it into the database.
+   * @description This method must cancel asynchronous operations after a timeout. [[TaskQueue]] implements a "last
+   * resort" timeout that will prevent slow updates from halting the queue, but it _will not cancel the operation_.
    */
   public abstract update(): Promise<void>
 
