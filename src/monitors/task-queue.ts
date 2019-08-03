@@ -16,7 +16,8 @@ export class TaskQueue {
     this.queue = new Queue({
       concurrency: 1,
       autostart: true,
-      timeout: 10000,
+      // Twenty seconds
+      timeout: 20000,
     })
 
     this.queue.on('start', (job: QueueWorker): void => this.handleStart(job))
