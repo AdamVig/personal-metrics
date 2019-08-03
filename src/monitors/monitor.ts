@@ -9,7 +9,9 @@ export abstract class Monitor {
    */
   public readonly interval: Duration = 3600
 
-  /** Get the latest data from the data source and inserts it into the database. */
+  /**
+   * Get the latest data from the data source and insert it into the database.
+   */
   public abstract update(): Promise<void>
 
   /**

@@ -32,6 +32,7 @@ export class BookmarksMonitor implements Monitor {
       this.log.info('successfully fetched bookmarks')
     } catch (error) {
       this.log.error({ err: error })
+      throw error
     }
   }
 

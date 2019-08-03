@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import PQueue from 'p-queue'
+import Queue, { QueueWorker } from 'queue'
 
 import { LogFactory, Logger } from '../logger/log-factory'
 
@@ -9,28 +9,63 @@ import { LogFactory, Logger } from '../logger/log-factory'
 @Injectable()
 export class TaskQueue {
   private readonly log: Logger
-  private readonly queue: PQueue
+  private readonly queue: Queue
 
   public constructor(log: LogFactory) {
     this.log = log.child('TaskQueue')
-    this.queue = new PQueue({
+    this.queue = new Queue({
       concurrency: 1,
-      autoStart: true,
-      // timeout: 5000,
+      autostart: true,
+      timeout: 10000,
     })
-    this.queue.on('active', (): void => this.handleActiveEvent())
-  }
 
-  private handleActiveEvent(): void {
-    this.log.trace({ size: this.queue.size, pending: this.queue.pending }, 'queue active')
-  }
-
-  public runTask(id: string, task: () => Promise<void>): void {
-    this.queue.add(task)
-    this.log.trace(
-      { size: this.queue.size, pending: this.queue.pending },
-      'added task "%s" to queue',
-      id,
+    this.queue.on('start', (job: QueueWorker): void => this.handleStart(job))
+    this.queue.on('success', (job: QueueWorker): void => this.handleSuccess(job))
+    this.queue.on('error', (error: Error, job: QueueWorker): void =>
+      this.handleError(error, job),
     )
+    this.queue.on('timeout', (next: () => void, job: QueueWorker): void =>
+      this.handleTimeout(next, job),
+    )
+    this.queue.on('end', (error?: Error): void => this.handleEnd(error))
+  }
+
+  private handleStart(job: QueueWorker): void {
+    this.log.debug(
+      { size: this.queue.length, task: job.name },
+      'task "%s" started',
+      job.name,
+    )
+  }
+  private handleSuccess(job: QueueWorker): void {
+    this.log.debug(
+      { size: this.queue.length, task: job.name },
+      'task "%s" succeeded',
+      job.name,
+    )
+  }
+  private handleError(error: Error, job: QueueWorker): void {
+    this.log.error(
+      { size: this.queue.length, err: error, task: job.name },
+      'task "%s" threw an error',
+      job.name,
+    )
+  }
+  private handleTimeout(next: () => void, job: QueueWorker): void {
+    this.log.warn(
+      { size: this.queue.length, task: job.name },
+      'task "%s" timed out',
+      job.name,
+    )
+    next()
+  }
+
+  private handleEnd(error?: Error): void {
+    this.log.trace({ err: error }, 'queue ended')
+  }
+
+  public runTask(task: () => Promise<void>): void {
+    this.queue.push(task)
+    this.log.trace({ size: this.queue.length }, 'added task "%s" to queue', task.name)
   }
 }
