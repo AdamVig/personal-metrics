@@ -1,22 +1,17 @@
 import { Injectable } from '@nestjs/common'
+import { AxiosRequestConfig } from 'axios'
+import { VError } from 'verror'
 
 import { Bookmark } from './bookmark'
 import { EnvironmentProvider } from '../../environment/environment.provider'
 import { Http } from '../../http/http'
-import { LogFactory, Logger } from '../../logger/log-factory'
-import { AxiosRequestConfig } from 'axios'
 
 @Injectable()
 export class PinboardClient {
-  private readonly log: Logger
-
   public constructor(
     private readonly env: EnvironmentProvider,
     private readonly http: Http,
-    log: LogFactory,
-  ) {
-    this.log = log.child('PinboardClient')
-  }
+  ) {}
 
   public async getAll(from?: Date): Promise<Bookmark[]> {
     const config: AxiosRequestConfig = {}
@@ -33,8 +28,7 @@ export class PinboardClient {
       )
       return bookmarks
     } catch (error) {
-      this.log.error({ err: error })
-      throw new Error('failed to get all Pinboard bookmarks')
+      throw new VError(error, 'failed to get all Pinboard bookmarks')
     }
   }
 

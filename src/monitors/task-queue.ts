@@ -48,8 +48,9 @@ export class TaskQueue {
   private handleError(error: Error, job: QueueWorker): void {
     this.log.error(
       { size: this.queue.length, err: error, task: job.name },
-      'task "%s" threw an error',
+      'task "%s" threw an error: %s',
       job.name,
+      error.message,
     )
   }
   private handleTimeout(next: () => void, job: QueueWorker): void {

@@ -1,3 +1,1 @@
-- look into cancelling monitor updates when they time out (possible memory leak if they are not cancelled)
-- implement https://www.npmjs.com/package/verror
 - add entity for last updated time for each monitor

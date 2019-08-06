@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
+import { VError } from 'verror'
 
 import { Bookmark } from './bookmark'
 import { BookmarkCount } from './bookmark-count.entity'
@@ -31,8 +32,7 @@ export class BookmarksMonitor implements Monitor {
       await this.repository.save(bookmarkCount)
       this.log.info('successfully fetched bookmarks')
     } catch (error) {
-      this.log.error({ err: error })
-      throw error
+      throw new VError(error, 'bookmarks update failed')
     }
   }
 
