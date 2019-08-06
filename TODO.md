@@ -1,1 +1,3 @@
 - add entity for last updated time for each monitor
+- read code of https://github.com/jtmthf/nestjs-pino-logger for possible LoggerModule improvements
+- try to implement Helmet https://github.com/wbhob/nest-middlewares
