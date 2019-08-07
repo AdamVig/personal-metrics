@@ -12,7 +12,6 @@ async function bootstrap(): Promise<void> {
     logger: new NestLogger(new LogFactory()),
   })
   app.useStaticAssets(__dirname)
-  app.set('x-powered-by', false)
 
   const log = app.get(LogFactory).child('bootstrap')
   const env = app.get(EnvironmentProvider)

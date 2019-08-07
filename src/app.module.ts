@@ -1,5 +1,6 @@
-import { Module } from '@nestjs/common'
+import { Module, MiddlewareConsumer } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { HelmetMiddleware } from '@nest-middlewares/helmet'
 
 import { AppController } from './app.controller'
 import { EnvironmentModule } from './environment/environment.module'
@@ -22,4 +23,8 @@ import { TypeOrmConfig } from './storage/typeorm-config'
   ],
   controllers: [AppController],
 })
-export class AppModule {}
+export class AppModule {
+  public configure(consumer: MiddlewareConsumer): void {
+    consumer.apply(HelmetMiddleware).forRoutes('*')
+  }
+}
