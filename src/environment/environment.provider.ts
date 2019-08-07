@@ -8,13 +8,21 @@ import { LogFactory, Logger } from '../logger/log-factory'
  * @description Must match `.env.example`.
  */
 export interface Environment {
+  /** Port to run the application on. */
   APP_PORT: string
+  /** Port to run Grafana on. */
   GRAFANA_PORT: string
+  /** Port to run the database on. */
   DB_PORT: string
+  /** Username for read/write database user. Will also be used as name of database. */
   DB_USER: string
+  /** Password for read/write database user. */
   DB_PASSWORD: string
+  /** Username for read-only database user. */
   DB_USER_READONLY: string
+  /** Password for read-only database user. */
   DB_PASSWORD_READONLY: string
+  /** API token for [Pinboard](https://pinboard.in/). */
   TOKEN_PINBOARD: string
 }
 
