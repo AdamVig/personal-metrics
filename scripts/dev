@@ -5,3 +5,4 @@ set -euo pipefail
 docker-compose up --no-start
 docker-compose start postgres
 docker-compose start grafana
+npm start

@@ -51,7 +51,7 @@ should be as follows:
 
 - `npm start` to run the application only
 - `./scripts/build` to build the application Docker container only
-- `./scripts/dev` to run services for development (must run `npm start` separately)
+- `./scripts/dev` to run services for development and `npm start`
 - `./scripts/db` to connect to the database using variables from `.env`
 - `npm run docs` to generate documentation (available at `/docs`)
 
