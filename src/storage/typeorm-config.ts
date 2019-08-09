@@ -30,15 +30,22 @@ export class TypeOrmConfig implements TypeOrmOptionsFactory {
       migrations: [join(__dirname, '..', 'migrations/*')],
     }
 
-    await fsWriteFile(
-      join(__dirname, '../..', 'ormconfig.json'),
-      JSON.stringify(options, null, 2),
-    )
+    if (this.env.get('NODE_ENV') !== 'production') {
+      await this.writeOrmConfig(options)
+    }
 
     // Some options should not be serialized to the file
     return {
       ...options,
       logger: this.logger,
     }
+  }
+
+  /** Write the configuration to a file for use with the TypeORM CLI. */
+  private async writeOrmConfig(options: TypeOrmModuleOptions): Promise<void> {
+    await fsWriteFile(
+      join(__dirname, '../..', 'ormconfig.json'),
+      JSON.stringify(options, null, 2),
+    )
   }
 }
