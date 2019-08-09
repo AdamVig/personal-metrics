@@ -11,8 +11,6 @@ services:
         mode: host
     depends_on:
       - postgres
-    environment:
-      - NODE_ENV=production
   grafana:
     image: 'grafana/grafana'
     restart: always

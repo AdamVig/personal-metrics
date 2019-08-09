@@ -8,6 +8,8 @@ import { LogFactory, Logger } from '../logger/log-factory'
  * @description Must match `.env.example`.
  */
 export interface Environment {
+  /** Environment the application is running in. */
+  NODE_ENV: string
   /** Port to run the application on. */
   APP_PORT: string
   /** Port to run Grafana on. */
@@ -31,6 +33,7 @@ export interface Environment {
 export class EnvironmentProvider {
   private readonly log: Logger
   private readonly capturedVariables = new Set<keyof Environment>([
+    'NODE_ENV',
     'APP_PORT',
     'GRAFANA_PORT',
     'DB_PORT',
