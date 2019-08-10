@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common'
-import dotenv from 'dotenv'
 
 import { LogFactory, Logger } from '../logger/log-factory'
 
@@ -47,7 +46,6 @@ export class EnvironmentProvider {
 
   public constructor(log: LogFactory) {
     this.log = log.child('Environment')
-    dotenv.config()
 
     this.log.trace(process.env, 'environment variables')
     this.capture()
