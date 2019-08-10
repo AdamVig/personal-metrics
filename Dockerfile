@@ -21,6 +21,5 @@ RUN npx pkg --public --target node${NODE}-${PLATFORM}-${ARCH} --output dist/pers
 
 FROM node:10-alpine
 EXPOSE 9000
-COPY .env .
 COPY --from=builder /app/dist/personal-metrics .
 CMD ["./personal-metrics"]

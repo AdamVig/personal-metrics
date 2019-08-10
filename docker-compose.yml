@@ -11,6 +11,8 @@ services:
         mode: host
     depends_on:
       - postgres
+    env_file:
+      - .env
   grafana:
     image: 'grafana/grafana'
     restart: always
