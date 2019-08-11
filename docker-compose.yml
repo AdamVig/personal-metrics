@@ -1,7 +1,7 @@
 version: '3.2'
 services:
   app:
-    image: 'adamvig/personal-metrics'
+    image: adamvig/personal-metrics:latest
     restart: always
     ports:
       - target: $APP_PORT
@@ -13,7 +13,7 @@ services:
     env_file:
       - .env
   grafana:
-    image: 'grafana/grafana'
+    image: grafana/grafana:latest
     restart: always
     ports:
       - target: 3000
@@ -27,7 +27,7 @@ services:
     depends_on:
       - postgres
   postgres:
-    image: 'timescale/timescaledb:latest-pg11'
+    image: timescale/timescaledb:latest-pg11
     restart: always
     ports:
       - target: 5432
