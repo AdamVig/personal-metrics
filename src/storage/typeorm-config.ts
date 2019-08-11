@@ -19,7 +19,7 @@ export class TypeOrmConfig implements TypeOrmOptionsFactory {
   public async createTypeOrmOptions(): Promise<TypeOrmModuleOptions> {
     const options: TypeOrmModuleOptions = {
       type: 'postgres',
-      host: 'localhost',
+      host: this.env.get('DB_HOST'),
       port: Number(this.env.get('DB_PORT')),
       username: this.env.get('DB_USER'),
       password: this.env.get('DB_PASSWORD'),

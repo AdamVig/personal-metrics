@@ -13,6 +13,13 @@ export interface Environment {
   APP_PORT: string
   /** Port to run Grafana on. */
   GRAFANA_PORT: string
+  /**
+   * Host to connect to the database on.
+   * @description When running with `npm start`, this should be set to `'localhost'`. When running in a Docker
+   * container, this should be set to the name of the database's container (`'postgres'` if you are using the
+   * `docker-compose.yml` in this repository).
+   */
+  DB_HOST: string
   /** Port to run the database on. */
   DB_PORT: string
   /** Username for read/write database user. Will also be used as name of database. */
@@ -35,6 +42,7 @@ export class EnvironmentProvider {
     'NODE_ENV',
     'APP_PORT',
     'GRAFANA_PORT',
+    'DB_HOST',
     'DB_PORT',
     'DB_USER',
     'DB_PASSWORD',
