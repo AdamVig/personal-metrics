@@ -4,12 +4,21 @@ set -euo pipefail
 
 sudo --validate
 
+echo "running as user '$USER'"
+
 if [[ "$OSTYPE" == *linux* ]]; then
+  grafana_dir="${XDG_DATA_HOME:-$HOME/.local/share}"/personal-metrics/grafana
+  echo "using path '$grafana_dir' for Grafana directory"
   echo 'creating Grafana directory...'
-  grafana_dir="${XDG_DATA_HOME:-~/.local/share}"/personal-metrics/grafana
-  mkdir -p "$grafana_dir"
+  if ! mkdir -p "$grafana_dir"; then
+    echo 'error: failed to greate Grafana directory'
+    exit 1
+  fi
 
   echo 'setting permissions on Grafana volume...'
   # https://grafana.com/docs/installation/docker/#user-id-changes
-  sudo chown -R 472 "$grafana_dir"
+  if ! sudo chown -R 472 "$grafana_dir"; then
+    echo 'error: failed to set permissions on Grafana volume'
+    exit 1
+  fi
 fi
