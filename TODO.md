@@ -1,2 +1,3 @@
+- make scheduler actually schedule repeated tasks
 - add entity for last updated time for each monitor
 - read code of https://github.com/jtmthf/nestjs-pino-logger for possible LoggerModule improvements
