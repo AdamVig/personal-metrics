@@ -24,11 +24,18 @@ ln -s /etc/nginx/sites-available/personal-metrics.conf /etc/nginx/sites-enabled/
 
 - `./scripts/start` to run services and application
 - `./scripts/stop` to stop services and application
-- `./scripts/bootstrap` to run one-time setup
+- `./scripts/bootstrap` to run one-time setup on the server
+- `./scripts/publish` to build and publish to Docker Hub
 - `./scripts/post-receive` to check out code and restart services/application on a remote host
   - To use this script, the remote host must have a bare Git repository: `git clone --bare https://github.com/AdamVig/personal-metrics.git`
   - The script should be places in that bare Git repository at `./hooks/post-receive` and made executable with
     `chmod +x ./hooks/post-receive`.
+
+### Deployment
+
+1. Locally, run `./scripts/publish` to build and publish the application to Docker Hub.
+2. Push the latest source code to the server and update the remote `.env` if necessary.
+3. On the server, navigate to the source code directory and run `./scripts/stop` then `./scripts/start`.
 
 ### Adding a Grafana Data Source
 

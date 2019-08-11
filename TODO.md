@@ -1,3 +1,2 @@
 - add entity for last updated time for each monitor
 - read code of https://github.com/jtmthf/nestjs-pino-logger for possible LoggerModule improvements
-- build app Docker image locally and push in development, then pull the built image in production

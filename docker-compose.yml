@@ -1,8 +1,7 @@
 version: '3.2'
 services:
   app:
-    build: .
-    image: ${USER}/personal-metrics
+    image: 'adamvig/personal-metrics'
     restart: always
     ports:
       - target: $APP_PORT
