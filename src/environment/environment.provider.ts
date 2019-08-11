@@ -20,7 +20,11 @@ export interface Environment {
    * `docker-compose.yml` in this repository).
    */
   DB_HOST: string
-  /** Port to run the database on. */
+  /**
+   * Port to run the database on.
+   * @description Will also be used to connect to the database when running with `npm start`, but will be ignored when
+   * running in a Docker container.
+   */
   DB_PORT: string
   /** Username for read/write database user. Will also be used as name of database. */
   DB_USER: string

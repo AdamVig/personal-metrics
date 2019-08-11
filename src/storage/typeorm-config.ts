@@ -20,7 +20,7 @@ export class TypeOrmConfig implements TypeOrmOptionsFactory {
     const options: TypeOrmModuleOptions = {
       type: 'postgres',
       host: this.env.get('DB_HOST'),
-      port: Number(this.env.get('DB_PORT')),
+      port: this.getPort(),
       username: this.env.get('DB_USER'),
       password: this.env.get('DB_PASSWORD'),
       // The Postgres Docker container automatically creates a database for the configured user
@@ -39,6 +39,17 @@ export class TypeOrmConfig implements TypeOrmOptionsFactory {
       ...options,
       logger: this.logger,
     }
+  }
+
+  /**
+   * Get database port. If the host is set to the name of the database container, the application must be running in a
+   * Docker container and should connect on the default port instead of the user-specified port.
+   */
+  private getPort(): number {
+    if (this.env.get('DB_HOST') === 'postgres') {
+      return 5432
+    }
+    return Number(this.env.get('DB_PORT'))
   }
 
   /** Write the configuration to a file for use with the TypeORM CLI. */
