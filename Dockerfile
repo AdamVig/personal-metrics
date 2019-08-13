@@ -26,7 +26,8 @@ COPY src src
 RUN npm run build:single
 RUN npx pkg --public --target node${NODE}-${PLATFORM}-${ARCH} --output dist/personal-metrics .
 
-FROM node:10-alpine
+FROM alpine:latest
 EXPOSE 9000
+RUN apk add --no-cache libstdc++
 COPY --from=builder /app/dist/personal-metrics .
 CMD ["./personal-metrics"]
