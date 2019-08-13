@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Service to capture, store, and display personal metrics.",
   "main": "dist/main.js",
+  "bin": "dist/main.js",
   "scripts": {
     "build": "npm run build:single -- --watch",
     "build:single": "tsc",
@@ -63,5 +64,10 @@
     "source-map-support": "^0.5.13",
     "typeorm": "^0.2.18",
     "verror": "^1.10.0"
+  },
+  "pkg": {
+    "scripts": [
+      "dist/migrations/**/*.js"
+    ]
   }
 }
