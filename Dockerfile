@@ -16,8 +16,8 @@ RUN npm ci
 # Only copy files needed for building
 COPY tsconfig.json .
 COPY src src
-RUN npx @zeit/ncc build --no-cache src/main.ts --out dist
-RUN npx pkg --public --target node${NODE}-${PLATFORM}-${ARCH} --output dist/personal-metrics dist/index.js
+RUN npm run build:single
+RUN npx pkg --public --target node${NODE}-${PLATFORM}-${ARCH} --output dist/personal-metrics .
 
 FROM node:10-alpine
 EXPOSE 9000
