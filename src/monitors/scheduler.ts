@@ -44,14 +44,22 @@ export class Scheduler {
     const nextRunMs = differenceInMilliseconds(nextRun, new Date())
 
     const taskName = `${name}-${nextRunMs}`
+
     // Set function name so it can be easily differentiated in the queue
     const namedMonitorUpdate = {
       [taskName](): Promise<void> {
         return monitor.update()
       },
     }[taskName]
-    // TODO this only runs once, add repeated scheduling
-    setTimeout((): void => void this.taskQueue.runTask(namedMonitorUpdate), nextRunMs)
+
+    // Run task `interval` seconds from its last run, then run it every `interval` second after that
+    setTimeout((): void => {
+      this.taskQueue.runTask(namedMonitorUpdate)
+      setInterval(
+        (): void => this.taskQueue.runTask(namedMonitorUpdate),
+        monitor.interval,
+      )
+    }, nextRunMs)
   }
 
   private async getNextRun(monitor: Monitor): Promise<Date> {
