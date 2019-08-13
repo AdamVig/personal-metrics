@@ -13,6 +13,9 @@ RUN apk add --no-cache make gcc g++ python
 # Pre-fetch Node base binaries for pkg
 RUN npx pkg-fetch -n node${NODE} -p ${PLATFORM} -a ${ARCH}
 
+# Pre-install pkg
+RUN npm i -g pkg
+
 # Only copy package files (npm ci will only run when they have changed)
 COPY package* ./
 RUN npm ci
