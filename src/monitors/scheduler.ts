@@ -57,7 +57,7 @@ export class Scheduler {
       this.taskQueue.runTask(namedMonitorUpdate)
       setInterval(
         (): void => this.taskQueue.runTask(namedMonitorUpdate),
-        monitor.interval,
+        monitor.interval * 1000,
       )
     }, nextRunMs)
   }
