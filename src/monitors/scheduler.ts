@@ -68,7 +68,7 @@ export class Scheduler {
   }
 
   private logNextRun(name: string, nextRun: Date): void {
-    this.log.debug(
+    this.log.info(
       'scheduling update for "%s" in %s (%s, %d seconds from now)',
       name,
       formatDistanceToNow(nextRun),
