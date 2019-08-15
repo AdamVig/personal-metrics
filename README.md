@@ -20,6 +20,26 @@ Optionally, copy `personal-metrics.conf` to `/etc/nginx/sites-available` and ena
 ln -s /etc/nginx/sites-available/personal-metrics.conf /etc/nginx/sites-enabled/personal-metrics.conf
 ```
 
+#### Docker Compose Overrides
+
+To override parts of the Docker Compose configuration, create a file on the server called `docker-compose.override.yml`.
+See [the Docker Compose documentation](https://docs.docker.com/compose/extends/) for more details on file overrides.
+
+For example, to set up [Papertrail
+logging](https://help.papertrailapp.com/kb/configuration/configuring-centralized-logging-from-docker/#docker-compose)
+for the `app` container:
+
+```yml
+version: '3.2'
+services:
+  app:
+    logging:
+      driver: syslog
+      options:
+        syslog-address: 'udp://logsX.papertrailapp.com:XXXX'
+        tag: 'personal-metrics'
+```
+
 ### Scripts
 
 - `./scripts/start` to run services and application
