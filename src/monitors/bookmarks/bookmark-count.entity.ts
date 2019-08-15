@@ -7,13 +7,13 @@ export class BookmarkCount {
 
   /** Count of bookmarks. */
   @Column('int')
-  public total: number = 0
+  public total = 0
 
   /** Count of unread bookmarks. */
   @Column('int')
-  public unread: number = 0
+  public unread = 0
 
   /** Count of private bookmarks. */
   @Column('int')
-  public private: number = 0
+  public private = 0
 }

@@ -121,8 +121,8 @@ export class EnvironmentProvider {
    * @see {@link http://2ality.com/2015/08/es6-map-json.html}
    */
   private static strMapToObj(strMap: Map<string, string>): object {
-    let obj = Object.create(null)
-    for (let [k, v] of strMap) {
+    const obj = Object.create(null)
+    for (const [k, v] of strMap) {
       obj[k] = v
     }
     return obj
