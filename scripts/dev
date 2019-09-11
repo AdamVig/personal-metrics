@@ -2,7 +2,6 @@
 
 set -euo pipefail
 
-docker-compose up --no-start
-docker-compose start postgres
-docker-compose start grafana
+docker-compose up --detach postgres
+docker-compose up --detach grafana
 npm start
