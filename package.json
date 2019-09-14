@@ -57,12 +57,12 @@
     "date-fns": "^2.2.1",
     "dotenv": "^8.1.0",
     "pg": "^7.12.1",
-    "pino": "^5.13.2",
+    "pino": "^5.13.3",
     "queue": "^6.0.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.3",
     "source-map-support": "^0.5.13",
-    "typeorm": "^0.2.18",
+    "typeorm": "^0.2.19",
     "verror": "^1.10.0"
   },
   "pkg": {
