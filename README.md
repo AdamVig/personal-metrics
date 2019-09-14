@@ -85,8 +85,9 @@ should be as follows:
 ### TypeORM
 
 - [Documentation](https://typeorm.io/)
-- Use the CLI via `npm run typeorm --`. For example:
-  - `npm run typeorm -- migration:create --dir src/migrations --name foo`
+- Use the CLI via `npm run typeorm --`.
+  - Create an empty migration: `npm run typeorm -- migration:create --dir src/migrations --name foo`
+  - Generate a migration for entities added since the last migration: `npm run typeorm -- migration:generate --dir src/migrations --name foo`
 
 ### Architecture
 
