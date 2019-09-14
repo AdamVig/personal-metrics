@@ -1,1 +1,3 @@
-- add entity for last updated time for each monitor
+- add Pinboard tag analysis
+- use task_run time to check if Pinboard bookmarks have changed before fetching them
+- add FitBit data source

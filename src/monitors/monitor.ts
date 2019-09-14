@@ -15,10 +15,4 @@ export abstract class Monitor {
    * resort" timeout that will prevent slow updates from halting the queue, but it _will not cancel the operation_.
    */
   public abstract update(): Promise<void>
-
-  /**
-   * Get the time of the last update.
-   * @return Time of last update or `null` if no previous updates are found.
-   */
-  public abstract getLastUpdateTime(): Date | null
 }

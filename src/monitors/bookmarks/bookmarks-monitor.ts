@@ -51,9 +51,4 @@ export class BookmarksMonitor implements Monitor {
     }
     return count
   }
-
-  public getLastUpdateTime(): Date | null {
-    // TODO implement database check
-    return new Date()
-  }
 }
