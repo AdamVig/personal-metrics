@@ -15,8 +15,5 @@
         "allows": ["private readonly", "protected readonly", "public readonly"]
       }
     ]
-  },
-  "parserOptions": {
-    "project": "./tsconfig.json"
   }
 }
