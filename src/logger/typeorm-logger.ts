@@ -34,9 +34,9 @@ export class TypeOrmLogger implements ITypeOrmLogger {
   public log(level: 'log' | 'info' | 'warn', message: string): void {
     let loggerMethod: Logger['warn'] | Logger['info']
     if (level === 'warn') {
-      loggerMethod = this.logger.warn
+      loggerMethod = this.logger.warn.bind(this.logger)
     } else {
-      loggerMethod = this.logger.info
+      loggerMethod = this.logger.info.bind(this.logger)
     }
 
     loggerMethod(message)
