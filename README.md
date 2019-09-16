@@ -88,6 +88,7 @@ should be as follows:
 - Use the CLI via `npm run typeorm --`.
   - Create an empty migration: `npm run typeorm -- migration:create --dir src/migrations --name foo`
   - Generate a migration for entities added since the last migration: `npm run typeorm -- migration:generate --dir src/migrations --name foo`
+  - Revert the most recent migration: `npm run typeorm -- migration:revert`
 
 ### Architecture
 
