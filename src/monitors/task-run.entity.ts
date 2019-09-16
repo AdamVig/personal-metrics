@@ -6,7 +6,7 @@ export class TaskRun {
   public time!: Date
 
   /** Unique ID of the task run. */
-  @Column({ type: 'text', nullable: false, unique: true })
+  @Column({ type: 'text', nullable: false })
   public id!: string
 
   /** Name of the `Monitor` that the task came from. */
