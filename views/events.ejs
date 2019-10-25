@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Events | Personal Metrics</title>
+  </head>
+  <body>
+    <% for (const event of events) { %>
+    <form method="post" action="/event/<%= event %>">
+      <button type="submit"><%= event %></button>
+    </form>
+    <% } %>
+  </body>
+</html>
