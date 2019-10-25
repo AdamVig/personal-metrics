@@ -2,6 +2,7 @@ import 'source-map-support/register'
 import { NestFactory } from '@nestjs/core'
 import { NestExpressApplication } from '@nestjs/platform-express'
 import dotenv from 'dotenv'
+import { join } from 'path'
 
 import { AppModule } from './app.module'
 import { EnvironmentProvider } from './environment/environment.provider'
@@ -14,6 +15,8 @@ async function bootstrap(): Promise<void> {
     logger: new NestLogger(new LogFactory()),
   })
   app.useStaticAssets(__dirname)
+  app.setViewEngine('ejs')
+  app.setBaseViewsDir(join(__dirname, '..', 'views'))
 
   const log = app.get(LogFactory).child('bootstrap')
   const env = app.get(EnvironmentProvider)
