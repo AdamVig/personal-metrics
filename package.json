@@ -61,7 +61,7 @@
     "queue": "^6.0.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.3",
-    "source-map-support": "^0.5.13",
+    "source-map-support": "^0.5.16",
     "typeorm": "^0.2.20",
     "verror": "^1.10.0"
   },
