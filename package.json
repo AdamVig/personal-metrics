@@ -31,7 +31,6 @@
   },
   "homepage": "https://github.com/AdamVig/personal-metrics#readme",
   "devDependencies": {
-    "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.2",
     "@types/express-serve-static-core": "^4.17.0",
     "@types/node": "^10.17.5",
