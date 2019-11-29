@@ -45,7 +45,7 @@
     "nodemon": "^2.0.1",
     "pino-pretty": "^3.4.0",
     "prettier": "^1.19.1",
-    "ts-node": "^8.5.2",
+    "ts-node": "^8.5.4",
     "typedoc": "^0.15.3",
     "typescript": "^3.7.2"
   },
