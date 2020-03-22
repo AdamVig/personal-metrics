@@ -1,6 +1,7 @@
 version: '3.2'
 services:
   app:
+    container_name: personal-metrics
     image: adamvig/personal-metrics:latest
     restart: always
     ports:
@@ -12,7 +13,13 @@ services:
       - postgres
     env_file:
       - .env
+    labels:
+      - "traefik.http.routers.personalmetrics.entrypoints=websecure"
+      - "traefik.http.routers.personalmetrics.rule=Host(`personal-metrics.adamvig.com`)"
+      - "traefik.http.routers.personalmetrics.tls=true"
+      - "traefik.http.routers.personalmetrics.tls.certresolver=le"
   grafana:
+    container_name: personal-metrics-grafana
     image: grafana/grafana:latest
     restart: always
     ports:
@@ -27,6 +34,7 @@ services:
     depends_on:
       - postgres
   postgres:
+    container_name: personal-metrics-postgres
     image: timescale/timescaledb:latest-pg11
     restart: always
     ports:
