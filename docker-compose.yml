@@ -13,11 +13,6 @@ services:
       - postgres
     env_file:
       - .env
-    labels:
-      - "traefik.http.routers.personalmetrics.entrypoints=websecure"
-      - "traefik.http.routers.personalmetrics.rule=Host(`personal-metrics.adamvig.com`)"
-      - "traefik.http.routers.personalmetrics.tls=true"
-      - "traefik.http.routers.personalmetrics.tls.certresolver=le"
   grafana:
     container_name: personal-metrics-grafana
     image: grafana/grafana:latest
