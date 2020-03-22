@@ -15,7 +15,7 @@ services:
       - .env
   grafana:
     container_name: personal-metrics-grafana
-    image: grafana/grafana:latest
+    image: grafana/grafana:6.3.1
     restart: always
     ports:
       - target: 3000
@@ -35,7 +35,7 @@ services:
       - "traefik.http.routers.personalmetricsgrafana.tls.certresolver=le"
   postgres:
     container_name: personal-metrics-postgres
-    image: timescale/timescaledb:latest-pg11
+    image: timescale/timescaledb:1.4.1-pg11
     restart: always
     ports:
       - target: 5432
