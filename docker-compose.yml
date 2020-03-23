@@ -36,6 +36,7 @@ services:
       - "traefik.http.routers.personalmetricsgrafana.rule=Host(`personal-metrics.adamvig.com`)"
       - "traefik.http.routers.personalmetricsgrafana.tls=true"
       - "traefik.http.routers.personalmetricsgrafana.tls.certresolver=le"
+      - "traefik.http.services.personalmetricsgrafana.loadbalancer.server.port=3000"
   postgres:
     container_name: personal-metrics-postgres
     image: timescale/timescaledb:1.4.1-pg11
