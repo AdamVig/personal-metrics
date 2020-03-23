@@ -28,6 +28,9 @@ services:
       - GF_SERVER_ROOT_URL=${GRAFANA_ROOT_URL:-http://localhost:9001}
     depends_on:
       - postgres
+    networks:
+      - default
+      - personal-server
     labels:
       - "traefik.http.routers.personalmetricsgrafana.entrypoints=websecure"
       - "traefik.http.routers.personalmetricsgrafana.rule=Host(`personal-metrics.adamvig.com`)"
@@ -51,3 +54,7 @@ services:
       - PGDATA=/var/lib/postgresql/data/pgdata
 volumes:
   pgdata:
+networks:
+  personal-server:
+    external:
+      name: personal-server
