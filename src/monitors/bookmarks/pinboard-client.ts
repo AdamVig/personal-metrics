@@ -42,7 +42,6 @@ export class PinboardClient {
     return {
       ...overrides,
       params: {
-        // eslint-disable-next-line @typescript-eslint/camelcase
         auth_token: this.env.get('TOKEN_PINBOARD'),
         format: 'json',
         ...(overrides.params || {}),

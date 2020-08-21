@@ -10,23 +10,36 @@ export class NestLogger implements LoggerService {
     this.logger = logFactory.child('Nest')
   }
 
-  public error(message: object, trace?: string, context?: string): void {
+  public error(
+    message: Record<string | number | symbol, unknown>,
+    trace?: string,
+    context?: string,
+  ): void {
     this.logger.error(message, trace, context)
   }
 
-  public log(message: object, context?: string): void {
+  public log(message: Record<string | number | symbol, unknown>, context?: string): void {
     this.logger.info(message, context)
   }
 
-  public warn(message: object, context?: string): void {
+  public warn(
+    message: Record<string | number | symbol, unknown>,
+    context?: string,
+  ): void {
     this.logger.warn(message, context)
   }
 
-  public debug(message: object, context?: string): void {
+  public debug(
+    message: Record<string | number | symbol, unknown>,
+    context?: string,
+  ): void {
     this.logger.debug(message, context)
   }
 
-  public verbose(message: object, context?: string): void {
+  public verbose(
+    message: Record<string | number | symbol, unknown>,
+    context?: string,
+  ): void {
     this.logger.verbose(message, context)
   }
 
@@ -34,23 +47,39 @@ export class NestLogger implements LoggerService {
     return new LogFactory().child('Nest')
   }
 
-  public static log(message: object, context?: string): void {
+  public static log(
+    message: Record<string | number | symbol, unknown>,
+    context?: string,
+  ): void {
     NestLogger.getLogger().info(message, context)
   }
 
-  public static error(message: object, trace?: string, context?: string): void {
+  public static error(
+    message: Record<string | number | symbol, unknown>,
+    trace?: string,
+    context?: string,
+  ): void {
     NestLogger.getLogger().error(message, trace, context)
   }
 
-  public static warn(message: object, context?: string): void {
+  public static warn(
+    message: Record<string | number | symbol, unknown>,
+    context?: string,
+  ): void {
     NestLogger.getLogger().warn(message, context)
   }
 
-  public static debug(message: object, context?: string): void {
+  public static debug(
+    message: Record<string | number | symbol, unknown>,
+    context?: string,
+  ): void {
     NestLogger.getLogger().debug(message, context)
   }
 
-  public static verbose(message: object, context?: string): void {
+  public static verbose(
+    message: Record<string | number | symbol, unknown>,
+    context?: string,
+  ): void {
     NestLogger.getLogger().verbose(message, context)
   }
 }

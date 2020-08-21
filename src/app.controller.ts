@@ -5,7 +5,7 @@ import { join } from 'path'
 @Controller()
 export class AppController {
   @Get()
-  public root(): object {
+  public root(): { uptime: number } {
     return {
       uptime: process.uptime(),
     }

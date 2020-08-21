@@ -62,7 +62,9 @@ export class EnvironmentProvider {
     this.log.trace(process.env, 'environment variables')
     this.capture()
     this.log.debug(
-      this.redact(EnvironmentProvider.strMapToObj(this.variables) as Environment),
+      this.redact(
+        (EnvironmentProvider.strMapToObj(this.variables) as unknown) as Environment,
+      ),
       'captured variables',
     )
   }
@@ -120,7 +122,7 @@ export class EnvironmentProvider {
    * Convert string Maps to and from objects.
    * @see {@link http://2ality.com/2015/08/es6-map-json.html}
    */
-  private static strMapToObj(strMap: Map<string, string>): object {
+  private static strMapToObj(strMap: Map<string, string>): Record<string, string> {
     const obj = Object.create(null)
     for (const [k, v] of strMap) {
       obj[k] = v
